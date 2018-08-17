@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 import FriendCard from "./components/FriendCard";
 import Footer from "./components/Footer";
-import fish from "./fish.json";
+import fish from "./saiyans.json";
 import "./App.css";
 
 //sets state to 0 or empty

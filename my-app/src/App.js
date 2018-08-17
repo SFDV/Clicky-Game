@@ -4,55 +4,55 @@ import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 import FriendCard from "./components/FriendCard";
 import Footer from "./components/Footer";
-import fish from "./saiyans.json";
+import saiyan from "./saiyans.json";
 import "./App.css";
 
-//sets state to 0 or empty
+
 class App extends Component {
   state = {
-    fish,
-    clickedFish: [],
+    saiyan,
+    clickedSaiyan: [],
     score: 0
   };
 
-//when you click on a card ... the fish is taken out of the array
-  imageClick = event => {
-    const currentFish = event.target.alt;
-    const FishAlreadyClicked =
-      this.state.clickedFish.indexOf(currentFish) > -1;
 
-//if you click on a fish that has already been selected, the game is reset and cards reordered
-    if (FishAlreadyClicked) {
+  imageClick = event => {
+    const currentSaiyan = event.target.alt;
+    const SaiyanAlreadyClicked =
+      this.state.clickedSaiyan.indexOf(currentSaiyan) > -1;
+
+
+    if (SaiyanAlreadyClicked) {
       this.setState({
-        fish: this.state.fish.sort(function(a, b) {
+        saiyan: this.state.saiyan.sort(function(a, b) {
           return 0.5 - Math.random();
         }),
-        clickedFish: [],
+        clickedSaiyan: [],
         score: 0
       });
-        alert("You lose. Play again?");
+        alert("You lose... don't give up! Try again!");
 
-//if you click on an available fish, your score is increased and cards reordered
+
     } else {
       this.setState(
         {
-          fish: this.state.fish.sort(function(a, b) {
+          saiyan: this.state.saiyan.sort(function(a, b) {
             return 0.5 - Math.random();
           }),
-          clickedFish: this.state.clickedFish.concat(
-            currentFish
+          clickedSaiyan: this.state.clickedSaiyan.concat(
+            currentSaiyan
           ),
           score: this.state.score + 1
         },
-//if you get all 12 fish corrent you get a congrats message and the game resets        
+       
         () => {
           if (this.state.score === 12) {
-            alert("Yay! You Win!");
+            alert("Very impressive... I might even say you're a rare genious");
             this.setState({
-              fish: this.state.fish.sort(function(a, b) {
+              saiyan: this.state.saiyan.sort(function(a, b) {
                 return 0.5 - Math.random();
               }),
-              clickedFish: [],
+              clickedSaiyan: [],
               score: 0
             });
           }
@@ -61,7 +61,7 @@ class App extends Component {
     }
   };
 
-//the order of components to be rendered: navbar, jumbotron, friendcard, footer 
+ 
   render() {
     return (
       <div>
@@ -70,12 +70,12 @@ class App extends Component {
         />
         <Jumbotron />
         <div className="wrapper">
-          {this.state.fish.map(fish => (
+          {this.state.saiyan.map(saiyan => (
             <FriendCard
               imageClick={this.imageClick}
-              id={fish.id}
-              key={fish.id}
-              image={fish.image}
+              id={saiyan.id}
+              key={saiyan.id}
+              image={saiyan.image}
             />
           ))}
         </div>
